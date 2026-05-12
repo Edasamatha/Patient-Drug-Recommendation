@@ -94,9 +94,12 @@ This project showcases essential end-to-end skills for Data Analyst and Data Sci
 
 •	Practical application of machine learning and NLP to solve real-world healthcare challenges. 
 
+
+
 📬 Contact
+
+
 •	Author: Samatha Eda 
 
 •	Email: edasamatha2005@gmail.com 
 
-•	LinkedIn: linkedin.com/in/Edasamatha 
