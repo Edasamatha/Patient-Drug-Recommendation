@@ -1,0 +1,5 @@
+patient_id,age,condition,symptoms,comorbidities,allergies,current_medications,labs,clinical_note
+P001,56,hypertension,"headache; dizziness","chronic_kidney_disease","penicillin","aspirin","egfr=48; creatinine=1.8","56 year old with high blood pressure and CKD stage 3."
+P002,28,asthma,"wheezing; nighttime cough","recurrent_uti","","albuterol","creatinine=0.9","Intermittent asthma with recent wheeze episodes."
+P003,44,type_2_diabetes,"polyuria; fatigue","pancreatitis_history","","metformin","hba1c=9.1","Poor glycemic control with prior pancreatitis history."
+P004,33,major_depressive_disorder,"low mood; insomnia","bipolar_disorder","","sertraline","","Depressive symptoms with concern for mood instability."

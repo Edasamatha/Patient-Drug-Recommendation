@@ -1,0 +1,93 @@
+1. Patient Information
+
+Name: Mr. Rajesh Kumar
+
+Age: 32 Years
+
+Gender: Male
+
+Marital Status: Married
+
+Occupation: Office Employee
+
+2. Chief Complaint
+
+Patient presented with high-grade fever for 4 days associated with chills and body aches.
+
+3. History of Present Illness
+
+The patient was apparently well 5 days prior to admission when he developed sudden onset high-grade fever (up to 102°F), intermittent in nature, associated with:
+
+Headache
+
+Generalized body pain
+
+Fatigue
+
+Mild nausea
+
+No history of cough, breathlessness, rash, or urinary complaints. No recent travel history.
+
+4. Past Medical History
+
+No history of hypertension, diabetes, or tuberculosis.
+
+No known drug allergies.
+
+5. Clinical Examination
+
+Temperature: 101.8°F
+
+Pulse Rate: 98 bpm
+
+Blood Pressure: 118/76 mmHg
+
+Respiratory Rate: 18/min
+
+SpO₂: 98% on room air
+
+Systemic examination revealed no significant abnormalities.
+
+6. Investigations
+
+Complete Blood Count (CBC): Mild leukocytosis
+
+Dengue NS1 Antigen: Negative
+
+Malaria Parasite Test: Negative
+
+Widal Test: Negative
+
+Urine Routine: Normal
+
+7. Provisional Diagnosis
+
+Acute Viral Fever
+
+8. Treatment Given
+
+Tab. Paracetamol 650 mg – SOS for fever
+
+Tab. Azithromycin 500 mg – Once daily for 3 days
+
+Oral rehydration and adequate fluid intake
+
+Bed rest advised
+
+9. Hospital Course
+
+Patient responded well to symptomatic treatment. Fever subsided gradually over 3 days. No complications observed during hospital stay.
+
+10. Final Diagnosis
+
+Acute Viral Febrile Illness
+
+11. Advice at Discharge
+
+Continue adequate hydration
+
+Complete prescribed medications
+
+Follow-up after 5 days if symptoms persist
+
+Immediate consultation if high fever recurs

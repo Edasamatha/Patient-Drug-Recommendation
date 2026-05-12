@@ -1,0 +1,5 @@
+case_id,condition,proposed_treatment,treatment_goal,risk_flags,monitoring_plan,expected_side_effects,notes
+T001,hypertension,Lisinopril,"reduce BP to <130/80","chronic_kidney_disease","check creatinine and potassium in 1-2 weeks","dry cough; dizziness","Consider ARB switch if cough develops."
+T002,asthma,Budesonide inhaler,"reduce daytime and nighttime symptoms","none","review inhaler technique and symptom diary in 4 weeks","hoarseness; oral thrush","Rinse mouth after each use."
+T003,type_2_diabetes,Metformin,"improve fasting glucose and lower HbA1c","renal_impairment","monitor eGFR every 3 months","GI upset; nausea","Titrate slowly with meals."
+T004,major_depressive_disorder,Sertraline,"improve mood and sleep quality","bipolar_disorder","screen for mania and suicidality at follow-up","nausea; sexual dysfunction","Psychiatry review advised if activation symptoms appear."

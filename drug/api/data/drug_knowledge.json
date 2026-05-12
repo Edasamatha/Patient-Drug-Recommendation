@@ -1,0 +1,120 @@
+{
+  "conditions": {
+    "hypertension": [
+      {
+        "drug": "Lisinopril",
+        "class": "ACE inhibitor",
+        "first_line": true,
+        "avoid_if": ["pregnancy", "angioedema_history", "bilateral_renal_artery_stenosis"],
+        "caution_if": ["chronic_kidney_disease", "hyperkalemia"],
+        "common_side_effects": ["dry cough", "dizziness"],
+        "dose_note": "Often started low and titrated based on blood pressure and renal labs."
+      },
+      {
+        "drug": "Amlodipine",
+        "class": "Calcium channel blocker",
+        "first_line": true,
+        "avoid_if": ["severe_hypotension"],
+        "caution_if": ["heart_failure"],
+        "common_side_effects": ["ankle edema", "flushing"],
+        "dose_note": "Useful in isolated systolic hypertension; monitor peripheral edema."
+      },
+      {
+        "drug": "Losartan",
+        "class": "ARB",
+        "first_line": true,
+        "avoid_if": ["pregnancy"],
+        "caution_if": ["chronic_kidney_disease", "hyperkalemia"],
+        "common_side_effects": ["dizziness"],
+        "dose_note": "Alternative when ACE-inhibitor cough occurs."
+      }
+    ],
+    "type_2_diabetes": [
+      {
+        "drug": "Metformin",
+        "class": "Biguanide",
+        "first_line": true,
+        "avoid_if": ["severe_renal_failure", "metabolic_acidosis"],
+        "caution_if": ["chronic_kidney_disease", "liver_disease"],
+        "common_side_effects": ["nausea", "diarrhea"],
+        "dose_note": "Typically first-line if renal function allows."
+      },
+      {
+        "drug": "Empagliflozin",
+        "class": "SGLT2 inhibitor",
+        "first_line": false,
+        "avoid_if": ["type_1_diabetes", "severe_renal_failure"],
+        "caution_if": ["recurrent_uti", "volume_depletion"],
+        "common_side_effects": ["genital infection", "polyuria"],
+        "dose_note": "Consider when cardio-renal benefit is desired."
+      },
+      {
+        "drug": "Semaglutide",
+        "class": "GLP-1 receptor agonist",
+        "first_line": false,
+        "avoid_if": ["medullary_thyroid_cancer_history"],
+        "caution_if": ["pancreatitis_history"],
+        "common_side_effects": ["nausea", "vomiting"],
+        "dose_note": "Useful for weight and glycemic benefit; titrate slowly."
+      }
+    ],
+    "major_depressive_disorder": [
+      {
+        "drug": "Sertraline",
+        "class": "SSRI",
+        "first_line": true,
+        "avoid_if": ["concurrent_maoi"],
+        "caution_if": ["bipolar_disorder", "hyponatremia_risk"],
+        "common_side_effects": ["nausea", "insomnia"],
+        "dose_note": "First-line for many adults; monitor activation/suicidality early."
+      },
+      {
+        "drug": "Escitalopram",
+        "class": "SSRI",
+        "first_line": true,
+        "avoid_if": ["concurrent_maoi"],
+        "caution_if": ["qt_prolongation"],
+        "common_side_effects": ["fatigue", "sexual dysfunction"],
+        "dose_note": "Often well tolerated; check interaction profile."
+      },
+      {
+        "drug": "Bupropion",
+        "class": "NDRI",
+        "first_line": false,
+        "avoid_if": ["seizure_disorder", "eating_disorder"],
+        "caution_if": ["anxiety_disorder"],
+        "common_side_effects": ["insomnia", "dry mouth"],
+        "dose_note": "Can help when low energy is prominent; avoid in seizure risk."
+      }
+    ],
+    "asthma": [
+      {
+        "drug": "Budesonide inhaler",
+        "class": "Inhaled corticosteroid",
+        "first_line": true,
+        "avoid_if": [],
+        "caution_if": ["oral_candidiasis_history"],
+        "common_side_effects": ["hoarseness", "thrush"],
+        "dose_note": "Controller therapy; rinse mouth after use."
+      },
+      {
+        "drug": "Formoterol/Budesonide",
+        "class": "LABA + ICS",
+        "first_line": true,
+        "avoid_if": [],
+        "caution_if": ["arrhythmia"],
+        "common_side_effects": ["palpitations", "tremor"],
+        "dose_note": "Single-maintenance and reliever strategy in selected patients."
+      },
+      {
+        "drug": "Montelukast",
+        "class": "Leukotriene receptor antagonist",
+        "first_line": false,
+        "avoid_if": [],
+        "caution_if": ["neuropsychiatric_symptoms"],
+        "common_side_effects": ["headache"],
+        "dose_note": "Adjunct when allergic component is strong."
+      }
+    ]
+  }
+}

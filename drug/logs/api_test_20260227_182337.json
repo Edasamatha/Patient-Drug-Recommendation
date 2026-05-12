@@ -1,0 +1,450 @@
+{
+  "total": 12,
+  "passed": 11,
+  "failed": 1,
+  "results": [
+    {
+      "name": "health_ok",
+      "method": "GET",
+      "path": "/health",
+      "expected_codes": [
+        200
+      ],
+      "status_code": 200,
+      "status_ok": true,
+      "response_preview": "{\"status\":\"ok\"}\n",
+      "response_json": {
+        "status": "ok"
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    },
+    {
+      "name": "index_ok",
+      "method": "GET",
+      "path": "/",
+      "expected_codes": [
+        200
+      ],
+      "status_code": 200,
+      "status_ok": true,
+      "response_preview": "{\"endpoints\":{\"GET /health\":\"Health check\",\"POST /recommend\":\"Structured recommendation input (JSON)\",\"POST /recommend_dynamic\":\"Dynamic text/report recommendation input (JSON or multipart)\",\"POST /sentiment\":\"Clinical review sentiment analysis\"},\"service\":\"Patient Condition-Aware Drug Recommendation API\",\"status\":\"running\"}\n",
+      "response_json": {
+        "endpoints": {
+          "GET /health": "Health check",
+          "POST /recommend": "Structured recommendation input (JSON)",
+          "POST /recommend_dynamic": "Dynamic text/report recommendation input (JSON or multipart)",
+          "POST /sentiment": "Clinical review sentiment analysis"
+        },
+        "service": "Patient Condition-Aware Drug Recommendation API",
+        "status": "running"
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    },
+    {
+      "name": "recommend_valid_hypertension",
+      "method": "POST",
+      "path": "/recommend",
+      "expected_codes": [
+        200
+      ],
+      "status_code": 200,
+      "status_ok": true,
+      "response_preview": "{\"clinical_review\":\"Patient-specific ranking generated from curated rules. Preferred options: Amlodipine, Lisinopril, Losartan. Excluded/penalized options: None. Model confidence: 0.8. Validate renal/hepatic function, interactions, and local guidelines before prescribing.\",\"condition\":\"hypertension\",\"confidence\":0.8,\"disclaimer\":\"This tool provides evidence-informed triage support and is not a prescription engine. Final treatment selection must be made by a licensed clinician.\",\"excluded_options\":[],\"top_recommendations\":[{\"cautions\":[],\"class\":\"Calcium channel blocker\",\"common_side_effects\":[\"ankle edema\",\"flushing\"],\"dose_note\":\"Useful in isolated systolic hypertension; monitor peripheral edema.\",\"drug\":\"Amlodipine\",\"score\":1.9},{\"cautions\":[\"chronic_kidney_disease\"],\"class\":\"ACE inhibitor\",\"common_side_effects\":[\"dry cough\",\"dizziness\"],\"dose_note\":\"Often started low and titrated based on blood pressure and renal labs.\",\"drug\":\"Lisinopril\",\"score\":1.65},{\"cautions\":[\"chronic_kidney_",
+      "response_json": {
+        "clinical_review": "Patient-specific ranking generated from curated rules. Preferred options: Amlodipine, Lisinopril, Losartan. Excluded/penalized options: None. Model confidence: 0.8. Validate renal/hepatic function, interactions, and local guidelines before prescribing.",
+        "condition": "hypertension",
+        "confidence": 0.8,
+        "disclaimer": "This tool provides evidence-informed triage support and is not a prescription engine. Final treatment selection must be made by a licensed clinician.",
+        "excluded_options": [],
+        "top_recommendations": [
+          {
+            "cautions": [],
+            "class": "Calcium channel blocker",
+            "common_side_effects": [
+              "ankle edema",
+              "flushing"
+            ],
+            "dose_note": "Useful in isolated systolic hypertension; monitor peripheral edema.",
+            "drug": "Amlodipine",
+            "score": 1.9
+          },
+          {
+            "cautions": [
+              "chronic_kidney_disease"
+            ],
+            "class": "ACE inhibitor",
+            "common_side_effects": [
+              "dry cough",
+              "dizziness"
+            ],
+            "dose_note": "Often started low and titrated based on blood pressure and renal labs.",
+            "drug": "Lisinopril",
+            "score": 1.65
+          },
+          {
+            "cautions": [
+              "chronic_kidney_disease"
+            ],
+            "class": "ARB",
+            "common_side_effects": [
+              "dizziness"
+            ],
+            "dose_note": "Alternative when ACE-inhibitor cough occurs.",
+            "drug": "Losartan",
+            "score": 1.65
+          }
+        ]
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    },
+    {
+      "name": "recommend_validation_missing_condition",
+      "method": "POST",
+      "path": "/recommend",
+      "expected_codes": [
+        422
+      ],
+      "status_code": 422,
+      "status_ok": true,
+      "response_preview": "{\"details\":[{\"input\":{\"age\":56,\"pregnant\":false},\"loc\":[\"condition\"],\"msg\":\"Field required\",\"type\":\"missing\",\"url\":\"https://errors.pydantic.dev/2.10/v/missing\"}],\"error\":\"validation_failed\"}\n",
+      "response_json": {
+        "details": [
+          {
+            "input": {
+              "age": 56,
+              "pregnant": false
+            },
+            "loc": [
+              "condition"
+            ],
+            "msg": "Field required",
+            "type": "missing",
+            "url": "https://errors.pydantic.dev/2.10/v/missing"
+          }
+        ],
+        "error": "validation_failed"
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    },
+    {
+      "name": "recommend_unknown_condition",
+      "method": "POST",
+      "path": "/recommend",
+      "expected_codes": [
+        200
+      ],
+      "status_code": 200,
+      "status_ok": true,
+      "response_preview": "{\"clinical_review\":\"No curated guideline-backed options found for this condition in the local KB. Add validated protocols before using for care decisions.\",\"condition\":\"rare_unknown_condition_xyz\",\"confidence\":0.15,\"disclaimer\":\"Decision support only; requires clinician verification.\",\"excluded_options\":[],\"top_recommendations\":[]}\n",
+      "response_json": {
+        "clinical_review": "No curated guideline-backed options found for this condition in the local KB. Add validated protocols before using for care decisions.",
+        "condition": "rare_unknown_condition_xyz",
+        "confidence": 0.15,
+        "disclaimer": "Decision support only; requires clinician verification.",
+        "excluded_options": [],
+        "top_recommendations": []
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    },
+    {
+      "name": "recommend_dynamic_json_detected",
+      "method": "POST",
+      "path": "/recommend_dynamic",
+      "expected_codes": [
+        200
+      ],
+      "status_code": 200,
+      "status_ok": true,
+      "response_preview": "{\"clinical_review\":\"Patient-specific ranking generated from curated rules. Preferred options: Amlodipine, Lisinopril, Losartan. Excluded/penalized options: None. Model confidence: 0.8. Validate renal/hepatic function, interactions, and local guidelines before prescribing.\",\"condition\":\"hypertension\",\"confidence\":0.8,\"disclaimer\":\"This tool provides evidence-informed triage support and is not a prescription engine. Final treatment selection must be made by a licensed clinician.\",\"excluded_options\":[],\"parsed_input\":{\"files_used\":[],\"patient_profile\":{\"age\":56,\"allergies\":[\"penicillin\"],\"comorbidities\":[\"chronic_kidney_disease\"],\"condition\":\"hypertension\",\"current_medications\":[\"ications: aspirin\"],\"liver_impairment\":false,\"pregnant\":false,\"renal_impairment\":true},\"trace\":{\"labs_detected\":{\"creatinine\":1.8,\"egfr\":48.0},\"matched_condition_alias\":\"high blood pressure\",\"reports_processed\":0,\"text_length\":133}},\"top_recommendations\":[{\"cautions\":[],\"class\":\"Calcium channel blocker\",\"common_s",
+      "response_json": {
+        "clinical_review": "Patient-specific ranking generated from curated rules. Preferred options: Amlodipine, Lisinopril, Losartan. Excluded/penalized options: None. Model confidence: 0.8. Validate renal/hepatic function, interactions, and local guidelines before prescribing.",
+        "condition": "hypertension",
+        "confidence": 0.8,
+        "disclaimer": "This tool provides evidence-informed triage support and is not a prescription engine. Final treatment selection must be made by a licensed clinician.",
+        "excluded_options": [],
+        "parsed_input": {
+          "files_used": [],
+          "patient_profile": {
+            "age": 56,
+            "allergies": [
+              "penicillin"
+            ],
+            "comorbidities": [
+              "chronic_kidney_disease"
+            ],
+            "condition": "hypertension",
+            "current_medications": [
+              "ications: aspirin"
+            ],
+            "liver_impairment": false,
+            "pregnant": false,
+            "renal_impairment": true
+          },
+          "trace": {
+            "labs_detected": {
+              "creatinine": 1.8,
+              "egfr": 48.0
+            },
+            "matched_condition_alias": "high blood pressure",
+            "reports_processed": 0,
+            "text_length": 133
+          }
+        },
+        "top_recommendations": [
+          {
+            "cautions": [],
+            "class": "Calcium channel blocker",
+            "common_side_effects": [
+              "ankle edema",
+              "flushing"
+            ],
+            "dose_note": "Useful in isolated systolic hypertension; monitor peripheral edema.",
+            "drug": "Amlodipine",
+            "score": 1.9
+          },
+          {
+            "cautions": [
+              "chronic_kidney_disease"
+            ],
+            "class": "ACE inhibitor",
+            "common_side_effects": [
+              "dry cough",
+              "dizziness"
+            ],
+            "dose_note": "Often started low and titrated based on blood pressure and renal labs.",
+            "drug": "Lisinopril",
+            "score": 1.65
+          },
+          {
+            "cautions": [
+              "chronic_kidney_disease"
+            ],
+            "class": "ARB",
+            "common_side_effects": [
+              "dizziness"
+            ],
+            "dose_note": "Alternative when ACE-inhibitor cough occurs.",
+            "drug": "Losartan",
+            "score": 1.65
+          }
+        ]
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    },
+    {
+      "name": "recommend_dynamic_multipart_txt",
+      "method": "POST",
+      "path": "/recommend_dynamic",
+      "expected_codes": [
+        200
+      ],
+      "status_code": 200,
+      "status_ok": true,
+      "response_preview": "{\"clinical_review\":\"Patient-specific ranking generated from curated rules. Preferred options: Budesonide inhaler, Formoterol/Budesonide, Montelukast. Excluded/penalized options: None. Model confidence: 0.8. Validate renal/hepatic function, interactions, and local guidelines before prescribing.\",\"condition\":\"asthma\",\"confidence\":0.8,\"disclaimer\":\"This tool provides evidence-informed triage support and is not a prescription engine. Final treatment selection must be made by a licensed clinician.\",\"excluded_options\":[],\"parsed_input\":{\"files_used\":[\"report.txt\"],\"patient_profile\":{\"age\":28,\"allergies\":[],\"comorbidities\":[\"recurrent_uti\"],\"condition\":\"asthma\",\"current_medications\":[\"albuterol\"],\"liver_impairment\":false,\"pregnant\":false,\"renal_impairment\":false},\"trace\":{\"labs_detected\":{\"creatinine\":0.9},\"matched_condition_alias\":\"asthma\",\"reports_processed\":1,\"text_length\":89}},\"top_recommendations\":[{\"cautions\":[],\"class\":\"Inhaled corticosteroid\",\"common_side_effects\":[\"hoarseness\",\"thrus",
+      "response_json": {
+        "clinical_review": "Patient-specific ranking generated from curated rules. Preferred options: Budesonide inhaler, Formoterol/Budesonide, Montelukast. Excluded/penalized options: None. Model confidence: 0.8. Validate renal/hepatic function, interactions, and local guidelines before prescribing.",
+        "condition": "asthma",
+        "confidence": 0.8,
+        "disclaimer": "This tool provides evidence-informed triage support and is not a prescription engine. Final treatment selection must be made by a licensed clinician.",
+        "excluded_options": [],
+        "parsed_input": {
+          "files_used": [
+            "report.txt"
+          ],
+          "patient_profile": {
+            "age": 28,
+            "allergies": [],
+            "comorbidities": [
+              "recurrent_uti"
+            ],
+            "condition": "asthma",
+            "current_medications": [
+              "albuterol"
+            ],
+            "liver_impairment": false,
+            "pregnant": false,
+            "renal_impairment": false
+          },
+          "trace": {
+            "labs_detected": {
+              "creatinine": 0.9
+            },
+            "matched_condition_alias": "asthma",
+            "reports_processed": 1,
+            "text_length": 89
+          }
+        },
+        "top_recommendations": [
+          {
+            "cautions": [],
+            "class": "Inhaled corticosteroid",
+            "common_side_effects": [
+              "hoarseness",
+              "thrush"
+            ],
+            "dose_note": "Controller therapy; rinse mouth after use.",
+            "drug": "Budesonide inhaler",
+            "score": 1.9
+          },
+          {
+            "cautions": [],
+            "class": "LABA + ICS",
+            "common_side_effects": [
+              "palpitations",
+              "tremor"
+            ],
+            "dose_note": "Single-maintenance and reliever strategy in selected patients.",
+            "drug": "Formoterol/Budesonide",
+            "score": 1.9
+          },
+          {
+            "cautions": [],
+            "class": "Leukotriene receptor antagonist",
+            "common_side_effects": [
+              "headache"
+            ],
+            "dose_note": "Adjunct when allergic component is strong.",
+            "drug": "Montelukast",
+            "score": 1.0
+          }
+        ]
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    },
+    {
+      "name": "recommend_dynamic_condition_not_detected",
+      "method": "POST",
+      "path": "/recommend_dynamic",
+      "expected_codes": [
+        422
+      ],
+      "status_code": 422,
+      "status_ok": true,
+      "response_preview": "{\"details\":\"Could not detect a supported condition from description/reports.\",\"error\":\"condition_not_detected\",\"supported_conditions\":[\"asthma\",\"hypertension\",\"major_depressive_disorder\",\"type_2_diabetes\"]}\n",
+      "response_json": {
+        "details": "Could not detect a supported condition from description/reports.",
+        "error": "condition_not_detected",
+        "supported_conditions": [
+          "asthma",
+          "hypertension",
+          "major_depressive_disorder",
+          "type_2_diabetes"
+        ]
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    },
+    {
+      "name": "recommend_dynamic_bad_age_multipart",
+      "method": "POST",
+      "path": "/recommend_dynamic",
+      "expected_codes": [
+        422
+      ],
+      "status_code": 422,
+      "status_ok": true,
+      "response_preview": "{\"details\":\"Could not detect a supported condition from description/reports.\",\"error\":\"condition_not_detected\",\"supported_conditions\":[\"asthma\",\"hypertension\",\"major_depressive_disorder\",\"type_2_diabetes\"]}\n",
+      "response_json": {
+        "details": "Could not detect a supported condition from description/reports.",
+        "error": "condition_not_detected",
+        "supported_conditions": [
+          "asthma",
+          "hypertension",
+          "major_depressive_disorder",
+          "type_2_diabetes"
+        ]
+      },
+      "missing_tokens": [
+        "age must be an integer"
+      ],
+      "contains_ok": false,
+      "pass": false
+    },
+    {
+      "name": "sentiment_validation_empty_reviews",
+      "method": "POST",
+      "path": "/sentiment",
+      "expected_codes": [
+        422
+      ],
+      "status_code": 422,
+      "status_ok": true,
+      "response_preview": "{\"details\":[{\"ctx\":{\"actual_length\":0,\"field_type\":\"List\",\"min_length\":1},\"input\":[],\"loc\":[\"reviews\"],\"msg\":\"List should have at least 1 item after validation, not 0\",\"type\":\"too_short\",\"url\":\"https://errors.pydantic.dev/2.10/v/too_short\"}],\"error\":\"validation_failed\"}\n",
+      "response_json": {
+        "details": [
+          {
+            "ctx": {
+              "actual_length": 0,
+              "field_type": "List",
+              "min_length": 1
+            },
+            "input": [],
+            "loc": [
+              "reviews"
+            ],
+            "msg": "List should have at least 1 item after validation, not 0",
+            "type": "too_short",
+            "url": "https://errors.pydantic.dev/2.10/v/too_short"
+          }
+        ],
+        "error": "validation_failed"
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    },
+    {
+      "name": "sentiment_runtime",
+      "method": "POST",
+      "path": "/sentiment",
+      "expected_codes": [
+        200,
+        500
+      ],
+      "status_code": 500,
+      "status_ok": true,
+      "response_preview": "{\"details\":\"All sentiment models failed. Last error: 410 Client Error: Gone for url: https://api-inference.huggingface.co/models/distilbert/distilbert-base-uncased-finetuned-sst-2-english (Request ID: Root=1-69a19814-7881608f6c9295b86d488d8c;5c01fd53-2c0d-43d1-9407-bde4bae4d499)\\n\\nhttps://api-inference.huggingface.co is no longer supported. Please use https://router.huggingface.co instead.\",\"error\":\"hf_inference_failed\"}\n",
+      "response_json": {
+        "details": "All sentiment models failed. Last error: 410 Client Error: Gone for url: https://api-inference.huggingface.co/models/distilbert/distilbert-base-uncased-finetuned-sst-2-english (Request ID: Root=1-69a19814-7881608f6c9295b86d488d8c;5c01fd53-2c0d-43d1-9407-bde4bae4d499)\n\nhttps://api-inference.huggingface.co is no longer supported. Please use https://router.huggingface.co instead.",
+        "error": "hf_inference_failed"
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    },
+    {
+      "name": "not_found_route",
+      "method": "GET",
+      "path": "/does-not-exist",
+      "expected_codes": [
+        404
+      ],
+      "status_code": 404,
+      "status_ok": true,
+      "response_preview": "{\"details\":\"Route not found.\",\"error\":\"not_found\",\"hint\":\"Use GET / for API index and available endpoints.\"}\n",
+      "response_json": {
+        "details": "Route not found.",
+        "error": "not_found",
+        "hint": "Use GET / for API index and available endpoints."
+      },
+      "missing_tokens": [],
+      "contains_ok": true,
+      "pass": true
+    }
+  ]
+}
